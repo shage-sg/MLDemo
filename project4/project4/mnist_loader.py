@@ -3,6 +3,7 @@ import os, struct
 from array import array as pyarray
 from numpy import array, int8, uint8, zeros
 
+
 def load_mnist(dataset="training", path=".", digits=np.arange(10)):
     """
     Loads MNIST files into 3D numpy arrays
@@ -29,13 +30,13 @@ def load_mnist(dataset="training", path=".", digits=np.arange(10)):
     img = pyarray("B", fimg.read())
     fimg.close()
 
-    ind = [ k for k in range(size) if lbl[k] in digits ]
+    ind = [k for k in range(size) if lbl[k] in digits]
     N = len(ind)
 
     images = zeros((N, rows, cols), dtype=uint8)
     labels = zeros((N, 1), dtype=int8)
     for i in range(len(ind)):
-        images[i] = array(img[ ind[i]*rows*cols : (ind[i]+1)*rows*cols ]).reshape((rows, cols))
+        images[i] = array(img[ind[i] * rows * cols: (ind[i] + 1) * rows * cols]).reshape((rows, cols))
         labels[i] = lbl[ind[i]]
 
     return images, labels
