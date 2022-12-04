@@ -7,20 +7,8 @@ import sys
 
 # 计算基尼值。基尼值越小数据集的纯度越高
 def gini(s):
-    # 实现基尼系数的计算
-    num = s.shape[0]
-    labelCounts = {}
-    for label in s:
-        if label not in labelCounts.keys():
-            labelCounts[label] = 0
-        labelCounts[label] += 1
-    # 计算Gini
-    p_sum = 0
-    for key in labelCounts:
-        prob = float(labelCounts[key]) / num
-        p_sum += prob ** 2
-    gini = 1 - p_sum
-    return gini
+    return 1-((pd.value_counts(s)/len(s))**2).sum()
+
 
 
 # 计算熵。熵越小数据集的纯度越高
